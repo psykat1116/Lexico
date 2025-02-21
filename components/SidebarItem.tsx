@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface SidebarItemProps {
   label: string;
@@ -17,7 +18,7 @@ const SidebarItem = ({ label, iconSrc, href }: SidebarItemProps) => {
   return (
     <Button
       variant={active ? "sidebarOutline" : "sidebar"}
-      className="justify-start h-[52px]"
+      className={cn("justify-start h-[52px]", !active && "hover:text-white")}
       asChild
     >
       <Link href={href}>
@@ -28,7 +29,6 @@ const SidebarItem = ({ label, iconSrc, href }: SidebarItemProps) => {
           height={32}
           width={32}
         />
-
         {label}
       </Link>
     </Button>

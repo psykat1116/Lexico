@@ -3,9 +3,10 @@ import React from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { InfinityIcon } from "lucide-react";
+import { courses } from "@/db/schema";
 
 interface UserProgressProps {
-  activeCourse: any;
+  activeCourse: typeof courses.$inferSelect;
   hearts: number;
   points: number;
   hasActiveSuscription: boolean;
@@ -33,9 +34,9 @@ const UserProgress = ({
       <Link href="/shop">
         <Button variant="ghost" className="text-orange-500">
           <Image
-            src="/points.svg"
+            src="/image/points.svg"
             alt="Points"
-            className="mr-2"
+            className="mr-1"
             width={28}
             height={28}
           />
@@ -45,9 +46,9 @@ const UserProgress = ({
       <Link href="/shop">
         <Button variant="ghost" className="text-rose-500">
           <Image
-            src="/heart.svg"
+            src="/image/heart.svg"
             alt="Hearts"
-            className="mr-2"
+            className="mr-1"
             width={22}
             height={22}
           />

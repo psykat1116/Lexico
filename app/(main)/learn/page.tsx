@@ -3,14 +3,26 @@ import StrickyWrapper from "@/components/StickyWrapper";
 import FeedWrapper from "@/components/FeedWrapper";
 import FeedHeader from "@/components/FeedHeader";
 import UserProgress from "@/components/UserProgress";
-import { getUnits, getUserProgress } from "@/db/queries";
+import {
+  getCoursesProgress,
+  getLessonPercentage,
+  getUnits,
+  getUserProgress,
+} from "@/db/queries";
 import { redirect } from "next/navigation";
+import Unit from "@/components/Unit";
 
 const LearnPage = async () => {
   const userProgress = await getUserProgress();
+  const courseProgressData = await getCoursesProgress();
+  const lessonPercentage = await getLessonPercentage();
   const units = await getUnits();
 
   if (!userProgress || !userProgress?.activeCourse) {
+    redirect("/courses");
+  }
+
+  if (!courseProgressData) {
     redirect("/courses");
   }
 
@@ -27,7 +39,17 @@ const LearnPage = async () => {
       <FeedWrapper>
         <FeedHeader title={userProgress.activeCourse.title} />
         {units.map((unit) => (
-          <div key={unit.id}>{JSON.stringify(unit)}</div>
+          <div key={unit.id} className="mb-10">
+            <Unit
+              id={unit.id}
+              order={unit.order}
+              description={unit.description}
+              title={unit.title}
+              lessons={unit.lessons}
+              activeLesson={courseProgressData.activeLesson}
+              activeLessonPercentage={lessonPercentage}
+            />
+          </div>
         ))}
       </FeedWrapper>
     </div>

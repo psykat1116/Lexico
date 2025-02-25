@@ -4,6 +4,8 @@ import { Nunito } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import ExitModal from "@/components/modal/ExitModal";
+import HeartsModal from "@/components/modal/HeartsModal";
+import PracticeModal from "@/components/modal/PracticeModal";
 
 const nunito = Nunito({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900", "1000"],
@@ -27,6 +29,8 @@ export default function RootLayout({
         <body className={nunito.className}>
           <Toaster />
           <ExitModal />
+          <HeartsModal />
+          <PracticeModal />
           {children}
         </body>
       </html>

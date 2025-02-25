@@ -1,9 +1,15 @@
 import Quiz from "@/components/quiz/Quiz";
-import { redirect } from "next/navigation";
 import { getLesson, getUserProgress } from "@/db/queries";
+import { redirect } from "next/navigation";
+import React from "react";
 
-const LessonPage = async () => {
-  const lessonData = await getLesson();
+const LessonIDPage = async ({
+  params,
+}: {
+  params: Promise<{ lessonId: number }>;
+}) => {
+  const lessonId = (await params).lessonId;
+  const lessonData = await getLesson(lessonId);
   const userProgressData = await getUserProgress();
 
   if (!lessonData || !userProgressData) {
@@ -26,4 +32,4 @@ const LessonPage = async () => {
   );
 };
 
-export default LessonPage;
+export default LessonIDPage;

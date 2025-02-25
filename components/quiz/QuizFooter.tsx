@@ -1,6 +1,6 @@
 import React from "react";
 import { useKey, useMedia } from "react-use";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { Check, CheckCircle, XCircle } from "lucide-react";
 

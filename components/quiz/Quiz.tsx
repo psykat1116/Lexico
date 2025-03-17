@@ -16,7 +16,12 @@ import { reduceHeart } from "@/actions/userProgress";
 import { useHeartsModal } from "@/store/useHeartsModal";
 import { usePracticeModal } from "@/store/usePracticeModal";
 import { upsertChallengeProgress } from "@/actions/challengeProgress";
-import { challengeOptions, challengeProgress, challenges } from "@/db/schema";
+import {
+  challengeOptions,
+  challengeProgress,
+  challenges,
+  UserSubscription,
+} from "@/db/schema";
 
 interface QuizProps {
   initialLessonId: number;
@@ -27,7 +32,11 @@ interface QuizProps {
   })[];
   initialHearts: number;
   initialPercentage: number;
-  userSubscription: null;
+  userSubscription:
+    | (typeof UserSubscription.$inferSelect & {
+        isActive: boolean;
+      })
+    | null;
 }
 
 const Quiz = ({

@@ -1,10 +1,11 @@
 import Quiz from "@/components/quiz/Quiz";
 import { redirect } from "next/navigation";
-import { getLesson, getUserProgress } from "@/db/queries";
+import { getLesson, getUserProgress, getUserSubscription } from "@/db/queries";
 
 const LessonPage = async () => {
   const lessonData = await getLesson();
   const userProgressData = await getUserProgress();
+  const userSubscription = await getUserSubscription();
 
   if (!lessonData || !userProgressData) {
     redirect("/learn");
@@ -21,7 +22,7 @@ const LessonPage = async () => {
       initialLessonChallenges={lessonData.challenges}
       initialHearts={userProgressData.hearts}
       initialPercentage={initialPercentage}
-      userSubscription={null} // TODO: Implement user subscription
+      userSubscription={userSubscription}
     />
   );
 };

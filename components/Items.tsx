@@ -5,15 +5,14 @@ import { useTransition } from "react";
 
 import { Button } from "./ui/button";
 import { refillHearts } from "@/actions/userProgress";
+import { createStripeURL } from "@/actions/userSubscription";
+import { POINTS_TO_REFILL } from "@/Constant";
 
 interface ItemsProps {
   hearts: number;
   points: number;
   hasActiveSuscription: boolean;
 }
-
-// TODO: Move to a shared file
-const POINTS_TO_REFILL = 10;
 
 const Items = ({ hearts, points, hasActiveSuscription }: ItemsProps) => {
   const [pending, startTransition] = useTransition();
@@ -25,6 +24,18 @@ const Items = ({ hearts, points, hasActiveSuscription }: ItemsProps) => {
 
     startTransition(() => {
       refillHearts().catch((error) => toast.error(error));
+    });
+  };
+
+  const onUpgrade = () => {
+    startTransition(() => {
+      createStripeURL()
+        .then((res) => {
+          if (res.data) {
+            window.location.href = res.data;
+          }
+        })
+        .catch((error) => toast.error(error));
     });
   };
 
@@ -54,6 +65,22 @@ const Items = ({ hearts, points, hasActiveSuscription }: ItemsProps) => {
               <p>{POINTS_TO_REFILL}</p>
             </div>
           )}
+        </Button>
+      </div>
+      <div className="flex items-center w-full p-4 pt-8 gap-x-4 border-t-2">
+        <Image
+          src="/image/unlimited.svg"
+          alt="Unlimited"
+          height={60}
+          width={60}
+        />
+        <div className="flex-1">
+          <p className="text-neutral-700 text-base lg:text-xl font-bold">
+            Unlimited Hearts
+          </p>
+        </div>
+        <Button onClick={onUpgrade} disabled={pending}>
+          {hasActiveSuscription ? "Settings" : "Upgrade"}
         </Button>
       </div>
     </ul>

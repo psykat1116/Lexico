@@ -1,18 +1,21 @@
 import db from "@/db/drizzle";
 import { lessons } from "@/db/schema";
 import { isAdmin } from "@/lib/admin";
+
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
-  { params }: { params: { lessonId: number } }
+  _req: Request,
+  { params }: { params: Promise<{ lessonId: number }> }
 ) {
+  const lessonId = (await params).lessonId;
+
   if (!(await isAdmin())) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
   const data = await db.query.lessons.findFirst({
-    where: eq(lessons.id, params.lessonId),
+    where: eq(lessons.id, lessonId),
   });
 
   return NextResponse.json(data);
@@ -20,8 +23,10 @@ export async function GET(
 
 export async function PUT(
   req: Request,
-  { params }: { params: { lessonId: number } }
+  { params }: { params: Promise<{ lessonId: number }> }
 ) {
+  const lessonId = (await params).lessonId;
+
   if (!(await isAdmin())) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
@@ -33,23 +38,25 @@ export async function PUT(
     .set({
       ...body,
     })
-    .where(eq(lessons.id, params.lessonId))
+    .where(eq(lessons.id, lessonId))
     .returning();
 
   return NextResponse.json(data[0]);
 }
 
 export async function DELETE(
-  req: Request,
-  { params }: { params: { lessonId: number } }
+  _req: Request,
+  { params }: { params: Promise<{ lessonId: number }> }
 ) {
+  const lessonId = (await params).lessonId;
+
   if (!(await isAdmin())) {
     return new NextResponse("Unauthorized", { status: 401 });
   }
 
   const data = await db
     .delete(lessons)
-    .where(eq(lessons.id, params.lessonId))
+    .where(eq(lessons.id, lessonId))
     .returning();
 
   return NextResponse.json(data[0]);

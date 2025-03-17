@@ -1,10 +1,10 @@
-import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import SidebarItem from "./SidebarItem";
-import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
+import Image from "next/image";
 import { Loader } from "lucide-react";
+import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
+
+import { cn } from "@/lib/utils";
+import SidebarItem from "@/components/sidebar/SidebarItem";
 
 interface SidebarProps {
   className?: string;

@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   ClerkLoaded,
   ClerkLoading,
@@ -7,9 +6,11 @@ import {
   SignInButton,
   SignUpButton,
 } from "@clerk/nextjs";
-import { Loader } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { Loader } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (

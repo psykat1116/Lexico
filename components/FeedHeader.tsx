@@ -1,7 +1,8 @@
 import Link from "next/link";
-import React from "react";
-import { Button } from "./ui/button";
 import { ArrowLeft } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+
 interface FeedHeaderProps {
   title: string;
 }

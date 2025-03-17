@@ -1,27 +1,26 @@
 "use client";
 import { toast } from "sonner";
 import Image from "next/image";
-import { useState } from "react";
-import { useTransition } from "react";
-import ResultCard from "./ResultCard";
 import Confetti from "react-confetti";
 import { useRouter } from "next/navigation";
+import { useTransition, useState } from "react";
 import { useAudio, useWindowSize, useMount } from "react-use";
 
-import Challenge from "./Challenge";
-import QuizHeader from "./QuizHeader";
-import QuizFooter from "./QuizFooter";
-import QuestionBubble from "./QuestionBubble";
-import { reduceHeart } from "@/actions/userProgress";
-import { useHeartsModal } from "@/store/useHeartsModal";
-import { usePracticeModal } from "@/store/usePracticeModal";
-import { upsertChallengeProgress } from "@/actions/challengeProgress";
 import {
   challengeOptions,
   challengeProgress,
   challenges,
-  UserSubscription,
+  userSubscription,
 } from "@/db/schema";
+import Challenge from "@/components/quiz/Challenge";
+import { reduceHeart } from "@/actions/userProgress";
+import ResultCard from "@/components/quiz/ResultCard";
+import QuizHeader from "@/components/quiz/QuizHeader";
+import QuizFooter from "@/components/quiz/QuizFooter";
+import { useHeartsModal } from "@/store/useHeartsModal";
+import { usePracticeModal } from "@/store/usePracticeModal";
+import QuestionBubble from "@/components/quiz/QuestionBubble";
+import { upsertChallengeProgress } from "@/actions/challengeProgress";
 
 interface QuizProps {
   initialLessonId: number;
@@ -33,7 +32,7 @@ interface QuizProps {
   initialHearts: number;
   initialPercentage: number;
   userSubscription:
-    | (typeof UserSubscription.$inferSelect & {
+    | (typeof userSubscription.$inferSelect & {
         isActive: boolean;
       })
     | null;
@@ -124,7 +123,7 @@ const Quiz = ({
               setHearts((prev) => Math.min(prev + 1, 5));
             }
           })
-          .catch((error) => {
+          .catch(() => {
             toast.error("Something went wrong. Please try again");
           });
       });

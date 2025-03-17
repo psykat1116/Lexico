@@ -1,13 +1,13 @@
-import FeedWrapper from "@/components/FeedWrapper";
-import Promo from "@/components/Promo";
-import StickyWrapper from "@/components/StickyWrapper";
-import { Progress } from "@/components/ui/progress";
-import UserProgress from "@/components/UserProgress";
-import { getUserProgress, getUserSubscription } from "@/db/queries";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import React from "react";
+
 import { quests } from "@/Constant";
+import Promo from "@/components/Promo";
+import FeedWrapper from "@/components/FeedWrapper";
+import { Progress } from "@/components/ui/progress";
+import UserProgress from "@/components/UserProgress";
+import StickyWrapper from "@/components/StickyWrapper";
+import { getUserProgress, getUserSubscription } from "@/db/queries";
 
 const LeaderBoardPage = async () => {
   const userProgress = await getUserProgress();

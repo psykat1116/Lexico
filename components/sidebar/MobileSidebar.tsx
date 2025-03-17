@@ -1,12 +1,11 @@
-import React from "react";
+import { Menu } from "lucide-react";
+
 import {
   Sheet,
   SheetContent,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import Sidebar from "./Sidebar";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 const MobileSidebar = () => {
   return (

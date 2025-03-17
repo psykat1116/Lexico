@@ -1,7 +1,7 @@
+import { redirect } from "next/navigation";
+
 import Quiz from "@/components/quiz/Quiz";
 import { getLesson, getUserProgress, getUserSubscription } from "@/db/queries";
-import { redirect } from "next/navigation";
-import React from "react";
 
 const LessonIDPage = async ({
   params,

@@ -1,12 +1,12 @@
-import FeedWrapper from "@/components/FeedWrapper";
-import Items from "@/components/Items";
-import Quest from "@/components/Quest";
-import StickyWrapper from "@/components/StickyWrapper";
-import UserProgress from "@/components/UserProgress";
-import { getUserProgress, getUserSubscription } from "@/db/queries";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import React from "react";
+
+import Items from "@/components/Items";
+import Quest from "@/components/Quest";
+import FeedWrapper from "@/components/FeedWrapper";
+import UserProgress from "@/components/UserProgress";
+import StickyWrapper from "@/components/StickyWrapper";
+import { getUserProgress, getUserSubscription } from "@/db/queries";
 
 const ShopPage = async () => {
   const userProgress = await getUserProgress();

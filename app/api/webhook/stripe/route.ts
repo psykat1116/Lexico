@@ -1,10 +1,11 @@
-import db from "@/db/drizzle";
-import { UserSubscription } from "@/db/schema";
-import { stripe } from "@/lib/stripe";
+import Stripe from "stripe";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import Stripe from "stripe";
+
+import db from "@/db/drizzle";
+import { stripe } from "@/lib/stripe";
+import { userSubscription } from "@/db/schema";
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -34,7 +35,7 @@ export async function POST(req: Request) {
       return new NextResponse("User ID is Required", { status: 400 });
     }
 
-    await db.insert(UserSubscription).values({
+    await db.insert(userSubscription).values({
       userId: session.metadata.userId,
       stripeSubscriptionId: subscription.id,
       stripeCustomerId: subscription.customer as string,
@@ -49,14 +50,14 @@ export async function POST(req: Request) {
     );
 
     await db
-      .update(UserSubscription)
+      .update(userSubscription)
       .set({
         stripePriceId: subscription.items.data[0].price.id,
         stripeCurrentPeriodEnd: new Date(
           subscription.current_period_end * 1000
         ),
       })
-      .where(eq(UserSubscription.stripeSubscriptionId, subscription.id));
+      .where(eq(userSubscription.stripeSubscriptionId, subscription.id));
   }
 
   return new NextResponse(null, { status: 200 });

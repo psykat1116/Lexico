@@ -1,9 +1,9 @@
 import Link from "next/link";
-import React from "react";
-import { Button } from "./ui/button";
 import Image from "next/image";
 import { InfinityIcon } from "lucide-react";
+
 import { courses } from "@/db/schema";
+import { Button } from "@/components/ui/button";
 
 interface UserProgressProps {
   activeCourse: typeof courses.$inferSelect;

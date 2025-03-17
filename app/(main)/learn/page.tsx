@@ -1,8 +1,5 @@
-import React from "react";
-import StrickyWrapper from "@/components/StickyWrapper";
-import FeedWrapper from "@/components/FeedWrapper";
-import FeedHeader from "@/components/FeedHeader";
-import UserProgress from "@/components/UserProgress";
+import { redirect } from "next/navigation";
+
 import {
   getCoursesProgress,
   getLessonPercentage,
@@ -10,10 +7,13 @@ import {
   getUserProgress,
   getUserSubscription,
 } from "@/db/queries";
-import { redirect } from "next/navigation";
-import Unit from "@/components/Unit";
 import Promo from "@/components/Promo";
 import Quest from "@/components/Quest";
+import Unit from "@/components/unit/Unit";
+import FeedHeader from "@/components/FeedHeader";
+import FeedWrapper from "@/components/FeedWrapper";
+import UserProgress from "@/components/UserProgress";
+import StrickyWrapper from "@/components/StickyWrapper";
 
 const LearnPage = async () => {
   const userProgress = await getUserProgress();

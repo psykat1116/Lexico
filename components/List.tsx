@@ -1,10 +1,11 @@
 "use client";
-import { courses, userProgress } from "@/db/schema";
-import React, { useTransition } from "react";
-import Card from "./Card";
-import { useRouter } from "next/navigation";
-import { upsertUserProgress } from "@/actions/userProgress";
 import { toast } from "sonner";
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
+
+import Card from "@/components/Card";
+import { courses, userProgress } from "@/db/schema";
+import { upsertUserProgress } from "@/actions/userProgress";
 
 interface ListProps {
   courses: (typeof courses.$inferSelect)[];

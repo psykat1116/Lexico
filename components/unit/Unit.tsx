@@ -1,7 +1,6 @@
-import { challengeProgress, challenges, lessons, units } from "@/db/schema";
-import React from "react";
-import UnitBanner from "./UnitBanner";
-import LessonButton from "./LessonButton";
+import UnitBanner from "@/components/unit/UnitBanner";
+import LessonButton from "@/components/LessonButton";
+import { challengeProgress, challenges, lessons } from "@/db/schema";
 
 interface UnitProps {
   id: number;
@@ -21,9 +20,8 @@ interface UnitProps {
   activeLessonPercentage: number;
 }
 
+//TODO: Check
 const Unit = ({
-  id,
-  order,
   description,
   title,
   lessons,

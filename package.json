@@ -9,7 +9,8 @@
     "lint": "next lint",
     "db:studio": "npx drizzle-kit studio",
     "db:push": "npx drizzle-kit push",
-    "db:seed": "tsx ./script/seed.ts"
+    "db:prod": "tsx ./script/prod.ts",
+    "db:reset": "tsx ./script/reset.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.10.6",

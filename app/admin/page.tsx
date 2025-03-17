@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { redirect } from "next/navigation";
+
 import { isAdmin } from "@/lib/admin";
 
 const AdminPage = async () => {

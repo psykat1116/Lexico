@@ -1,7 +1,6 @@
-import { challengeOptions, challenges } from "@/db/schema";
 import { cn } from "@/lib/utils";
-import React from "react";
-import OptionCard from "./OptionCard";
+import OptionCard from "@/components/quiz/OptionCard";
+import { challengeOptions, challenges } from "@/db/schema";
 
 interface ChallengeProps {
   options: (typeof challengeOptions.$inferSelect)[];

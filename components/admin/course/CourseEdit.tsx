@@ -1,4 +1,3 @@
-import React from "react";
 import { SimpleForm, TextInput, required, Edit } from "react-admin";
 
 const CourseEdit = () => {

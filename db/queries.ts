@@ -1,21 +1,25 @@
 import { cache } from "react";
-import db from "@/db/drizzle";
+import { eq } from "drizzle-orm";
 import { auth } from "@clerk/nextjs/server";
+
 import {
   challengeProgress,
-  challenges,
   courses,
   lessons,
   units,
   userProgress,
-  UserSubscription,
+  userSubscription,
 } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import db from "@/db/drizzle";
+
+// * ------------------------------------ Fetches all courses -------------------------------------
 
 export const getCourses = cache(async () => {
   const data = await db.query.courses.findMany();
   return data;
 });
+
+// * ------------------------------------ Fetches user progress -------------------------------------
 
 export const getUserProgress = cache(async () => {
   const { userId } = await auth();
@@ -30,6 +34,8 @@ export const getUserProgress = cache(async () => {
 
   return data;
 });
+
+// * ------------------------------------ Fetch Units of Courses -------------------------------------
 
 export const getUnits = cache(async () => {
   const { userId } = await auth();
@@ -80,6 +86,8 @@ export const getUnits = cache(async () => {
   return normalizedData;
 });
 
+// * ------------------------------------ Fetches course by ID -------------------------------------
+
 export const getCourseById = cache(async (courseId: number) => {
   const data = await db.query.courses.findFirst({
     where: eq(courses.id, courseId),
@@ -97,6 +105,8 @@ export const getCourseById = cache(async (courseId: number) => {
 
   return data;
 });
+
+// * ------------------------------------ Fetches course progress -------------------------------------
 
 export const getCoursesProgress = cache(async () => {
   const { userId } = await auth();
@@ -143,6 +153,8 @@ export const getCoursesProgress = cache(async () => {
   };
 });
 
+// * ------------------------------------ Fetche lessons -------------------------------------
+
 export const getLesson = cache(async (id?: number) => {
   const { userId } = await auth();
   if (!userId) return null;
@@ -181,6 +193,8 @@ export const getLesson = cache(async (id?: number) => {
   return { ...data, challenges: normalizedChallenges };
 });
 
+// * ------------------------------------ Fetches user subscription -------------------------------------
+
 export const getLessonPercentage = cache(async () => {
   const courseProgress = await getCoursesProgress();
   if (!courseProgress || !courseProgress.activeLessonId) return 0;
@@ -198,12 +212,14 @@ export const getLessonPercentage = cache(async () => {
   return percentage;
 });
 
+// * ------------------------------------ Fetches user subscription -------------------------------------
+
 export const getUserSubscription = cache(async () => {
   const { userId } = await auth();
   if (!userId) return null;
 
-  const data = await db.query.UserSubscription.findFirst({
-    where: eq(UserSubscription.userId, userId),
+  const data = await db.query.userSubscription.findFirst({
+    where: eq(userSubscription.userId, userId),
   });
 
   if (!data) return null;
@@ -214,6 +230,8 @@ export const getUserSubscription = cache(async () => {
 
   return { ...data, isActive: !!isActive };
 });
+
+// * ------------------------------------ Fetches top users -------------------------------------
 
 export const getTopUsers = cache(async () => {
   const { userId } = await auth();

@@ -1,21 +1,26 @@
 "use client";
 import { Admin, Resource } from "react-admin";
 import simpleRestProvider from "ra-data-simple-rest";
-import CourseList from "./course/CourseList";
-import CourseCreate from "./course/CourseCreate";
-import CourseEdit from "./course/CourseEdit";
-import UnitList from "./unit/UnitList";
-import UnitCreate from "./unit/UnitCreate";
-import UnitEdit from "./unit/UnitEdit";
-import LessonList from "./lesson/LessonList";
-import LessonCreate from "./lesson/LessonCreate";
-import LessonEdit from "./lesson/LessonEdit";
-import ChallengeList from "./challenges/ChallengeList";
-import ChallengeCreate from "./challenges/ChallengeCreate";
-import ChallengeEdit from "./challenges/ChallengeEdit";
-import ChallengeOptionCreate from "./challengeOptions/ChallengeOptionCreate";
-import ChallengeOptionList from "./challengeOptions/ChallengeOptionList";
-import ChallengeOptionEdit from "./challengeOptions/ChallengeOptionEdit";
+
+import CourseList from "@/components/admin/course/CourseList";
+import CourseEdit from "@/components/admin/course/CourseEdit";
+import CourseCreate from "@/components/admin/course/CourseCreate";
+
+import UnitList from "@/components/admin/unit/UnitList";
+import UnitEdit from "@/components/admin/unit/UnitEdit";
+import UnitCreate from "@/components/admin/unit/UnitCreate";
+
+import LessonList from "@/components/admin/lesson/LessonList";
+import LessonEdit from "@/components/admin/lesson/LessonEdit";
+import LessonCreate from "@/components/admin/lesson/LessonCreate";
+
+import ChallengeEdit from "@/components/admin/challenges/ChallengeEdit";
+import ChallengeList from "@/components/admin/challenges/ChallengeList";
+import ChallengeCreate from "@/components/admin/challenges/ChallengeCreate";
+
+import ChallengeOptionList from "@/components/admin/challengeOptions/ChallengeOptionList";
+import ChallengeOptionEdit from "@/components/admin/challengeOptions/ChallengeOptionEdit";
+import ChallengeOptionCreate from "@/components/admin/challengeOptions/ChallengeOptionCreate";
 
 const dataProvider = simpleRestProvider("/api");
 

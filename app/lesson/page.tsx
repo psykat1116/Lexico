@@ -1,5 +1,6 @@
-import Quiz from "@/components/quiz/Quiz";
 import { redirect } from "next/navigation";
+
+import Quiz from "@/components/quiz/Quiz";
 import { getLesson, getUserProgress, getUserSubscription } from "@/db/queries";
 
 const LessonPage = async () => {

@@ -1,12 +1,9 @@
-import React from "react";
 import {
   SimpleForm,
   TextInput,
   required,
   Edit,
-  NumberInput,
   ReferenceInput,
-  SelectInput,
   BooleanInput,
 } from "react-admin";
 

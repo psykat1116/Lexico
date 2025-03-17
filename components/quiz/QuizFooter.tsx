@@ -1,8 +1,8 @@
-import React from "react";
 import { useKey, useMedia } from "react-use";
-import { Button } from "../ui/button";
+import { CheckCircle, XCircle } from "lucide-react";
+
 import { cn } from "@/lib/utils";
-import { Check, CheckCircle, XCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface QuizFooterProps {
   disabled?: boolean;

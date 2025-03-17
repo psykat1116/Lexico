@@ -1,19 +1,18 @@
-import FeedWrapper from "@/components/FeedWrapper";
-import Promo from "@/components/Promo";
-import Quest from "@/components/Quest";
-import StickyWrapper from "@/components/StickyWrapper";
-import { Avatar } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import UserProgress from "@/components/UserProgress";
+import Image from "next/image";
+import { redirect } from "next/navigation";
+
 import {
   getTopUsers,
   getUserProgress,
   getUserSubscription,
 } from "@/db/queries";
-import { AvatarImage } from "@radix-ui/react-avatar";
-import Image from "next/image";
-import { redirect } from "next/navigation";
-import React from "react";
+import Promo from "@/components/Promo";
+import Quest from "@/components/Quest";
+import FeedWrapper from "@/components/FeedWrapper";
+import UserProgress from "@/components/UserProgress";
+import { Separator } from "@/components/ui/separator";
+import StickyWrapper from "@/components/StickyWrapper";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 const LeaderBoardPage = async () => {
   const userProgress = await getUserProgress();
@@ -59,13 +58,11 @@ const LeaderBoardPage = async () => {
               <p className="font-bold text-lime-700 mr-4">{index + 1}</p>
               <Avatar className="border bg-green-500 h-12 w-12 ml-3 mr-6">
                 <AvatarImage src={user.userImageSrc} className="object-cover" />
-                <p className="font-bold text-nutral-800 flex-1">
-                  {user.userName}
-                </p>
-                <p className="text-muted-foreground">
-                  {userProgress.points} XP
-                </p>
               </Avatar>
+              <p className="font-bold text-neutral-800 flex-1">
+                {user.userName}
+              </p>
+              <p className="text-muted-foreground">{user.points} XP</p>
             </div>
           ))}
         </div>

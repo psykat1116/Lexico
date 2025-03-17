@@ -1,6 +1,7 @@
 import db from "@/db/drizzle";
-import { challenges } from "@/db/schema";
 import { isAdmin } from "@/lib/admin";
+import { challenges } from "@/db/schema";
+
 import { NextResponse } from "next/server";
 
 export async function GET() {

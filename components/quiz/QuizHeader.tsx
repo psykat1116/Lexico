@@ -1,7 +1,7 @@
-import { InfinityIcon, X } from "lucide-react";
-import React from "react";
-import { Progress } from "../ui/progress";
 import Image from "next/image";
+import { InfinityIcon, X } from "lucide-react";
+
+import { Progress } from "@/components/ui/progress";
 import { useExitModal } from "@/store/useExitModal";
 
 interface QuizHeaderProps {

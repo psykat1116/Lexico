@@ -1,5 +1,5 @@
-import MobileHeader from "@/components/MobileHeader";
-import Sidebar from "@/components/Sidebar";
+import MobileHeader from "@/components/sidebar/MobileHeader";
+import Sidebar from "@/components/sidebar/Sidebar";
 import React from "react";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {

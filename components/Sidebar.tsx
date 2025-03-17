@@ -35,7 +35,7 @@ const Sidebar = ({ className }: SidebarProps) => {
         />
         <SidebarItem
           label="Quests"
-          href="/quests"
+          href="/quest"
           iconSrc="/image/quests.svg"
         />
         <SidebarItem label="Shop" href="/shop" iconSrc="/image/shop.svg" />

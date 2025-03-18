@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "Lexico is a fun and interactive way to learn new languages through engaging games, challenges, and real-world scenarios. Whether you're a beginner or looking to refine your skills, our bite-sized lessons. Earn rewards, compete with friends, and track your progress as you master vocabulary, grammar, and pronunciation. With multiple languages to choose from, Lexico turns language learning into an exciting adventure. Start your journey today and make learning a language as fun as playing a game!",
     images: [
       {
-        url: "/OpenGraph.png",
+        url: "https://raw.githubusercontent.com/psykat1116/Lexico/refs/heads/master/public/Opengraph.png",
         width: 1200,
         height: 630,
         alt: "Lexico - Learn Languages Through Games & Challenges",

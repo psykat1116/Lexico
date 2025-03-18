@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📚 "Lexico" a Language Learning Website Like Duolingo Made Using [NextJS](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), Typescript, [Prisma](https://www.prisma.io/) As ORM, [NeonDB](https://neon.tech) As PostgreSQL, [Clerk](https://clerk.com/) For Authentication, [Stripe](https://stripe.com/in) For Payment, [Shadcn UI](https://ui.shadcn.com/) For User Interface And Much More.
 
-## Getting Started
-
-First, run the development server:
-
+## 🎯 Dummy Stripe Payment
+Stripe Is In Test Mode. So, Use the Dummy Card Numbers Given Below. For More Details Or a Dummy Number of Your Country Go To [Testing Card Number](https://docs.stripe.com/testing)
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+INDIA - 4000003560000008
+USA - 4242424242424242
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Clone The Repo
+```bash
+git clone https://github.com/psykat1116/Lexico.git
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎯 Run The Development
+### !! - Don't Forget To Convert The Folder Name To Lowercase Otherwise, It Can Lead To A Problem - !!
+```bash
+cd Lexico
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎯 .env File
+### Create a .env file in the root folder with the following variable
+```bash
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY =
+CLERK_SECRET_KEY =
+NEXT_PUBLIC_CLERK_SIGN_IN_URL= /sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL= /sign-up
+DATABASE_URL =
+STRIPE_API_KEY = 
+NEXT_PUBLIC_APP_URL = http://localhost:3000
+ADMIN_CLERK_ID = 
+STRIPE_WEBHOOK_SECRET = 
+```
 
-## Learn More
+## 🎯 Get Database Url
+- Go Through [NeonDB](https://neon.tech) Website Create An Account & Create New Project.
+- After creating your free project, save the password in the DB connection string.
+- Copy The Connection URL string & Paste it Into The .env file.
+- I Use Typescript & Drizzle ORM
+```bash
+DATABASE_URL = postgresql://<username>:<password>@<host>:<port>/<database>?sslmode=verify-full
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 Clerk Authentication
+- Create Your Account And Create a New Application
+- Set The Login And Sign Up for Medium Like Google, Github, Email, Phone No, etc
+- Get `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` and paste them into .env File
+- Go Through the documentation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 Stripe Integration
+- Create Your Stripe Account and create a new project account
+- Get The Secret Key & Set This Into `STRIPE_API_KEY`
+- For Testing The Webhook In the Local Environment Go Through the [Local Environemnt](https://dashboard.stripe.com/test/webhooks/create?endpoint_location=local)
+- First Download The [Stripe CLI](https://stripe.com/docs/stripe-cli)
+- Run The Following Code Into The Terminal
+  ```bash
+  stripe login
+  stripe listen --forward-to localhost:3000/api/webhook/stripe
+  ```
+- After Running This You Will Get A Code & Paste it into `STRIPE_WEBHOOK_SECRET`
+- For Hosted Website Set `NEXT_PUBLIC_APP_URL` to your hosted website URL Otherwise `http://localhost:3000`
+- Get Webhook Secret From [Here](https://dashboard.stripe.com/test/webhooks/create)
+- Endpoint URL will be hosted website URL & Selected Events Will Be
+  ```bash
+  Checkout -> checkout.session.completed
+  Invoice -> invoice.payment_succeeded
+  ```
+- Update The `STRIPE_WEBHOOK_SECRET` by creating a new webhook with endpoint `{your_hosted_website}/api/webhook/stripe`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎯 Admin Dashboard
+- Get Your Clerk User ID from your [Clerk](https://clerk.com) Dashboard
+- Set `ADMIN_CLERK_ID` in the .env file with the User ID.

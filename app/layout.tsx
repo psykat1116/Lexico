@@ -3,6 +3,7 @@ import { Toaster } from "sonner";
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/next";
 
 import ExitModal from "@/components/modal/ExitModal";
 import HeartsModal from "@/components/modal/HeartsModal";
@@ -67,6 +68,7 @@ export default function RootLayout({
           <HeartsModal />
           <PracticeModal />
           {children}
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
